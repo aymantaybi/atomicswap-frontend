@@ -5,7 +5,8 @@ import {
     HStack,
     Button,
     Flex,
-    ButtonGroup
+    ButtonGroup,
+    useColorModeValue
 } from "@chakra-ui/react";
 
 import { useState } from "react";
@@ -34,6 +35,8 @@ function Navbar() {
 
     const router = useRouter();
 
+    const color = useColorModeValue("#2a6d74", "#98b04f");
+
     const [selectedAddress, setSelectedAddress] = useState<string | null>(null);
 
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -51,7 +54,7 @@ function Navbar() {
     }
 
     return (
-        <Flex w="100%" h="80px" display="flex" justifyContent="space-between" alignItems="center" position="sticky" top="0" padding="0px 15px 0px 15px" >
+        <Flex w="100%" h="80px" display="flex" justifyContent="space-between" alignItems="center" position="sticky" top="0" padding="0px 15px 0px 15px" backgroundColor="gray.800" zIndex={"1000"} >
             <HStack spacing='2rem'>
                 <HStack spacing='5px' marginLeft="2rem" >
                     <DiAtom color={"white"} size="45px" />
@@ -64,12 +67,12 @@ function Navbar() {
                 </HStack>
                 <ButtonGroup gap='1'>
                     <Link href="/swap" passHref>
-                        <Button size="md" leftIcon={<VscArrowSwap size="25px" color={"#81E6D9"} />} colorScheme='teal' variant='ghost' background={`rgba(129, 230, 217, ${router.asPath == "/swap" ? "0.15" : "0"})`} >
+                        <Button size="md" leftIcon={<VscArrowSwap size="25px" color="#D6BCFA" />} color="#D6BCFA" variant='ghost' backgroundColor='rgba(85, 60, 154, 0.15)' >
                             Swap
                         </Button>
                     </Link>
                     <Link href="/bridge" passHref>
-                        <Button size="md" leftIcon={<GiArchBridge size="25px" color={"#81E6D9"} />} colorScheme='teal' variant='ghost' background={`rgba(129, 230, 217, ${router.asPath == "/bridge" ? "0.15" : "0"})`} >
+                        <Button size="md" leftIcon={<GiArchBridge size="25px" color="#D6BCFA" />} color="#D6BCFA" variant='ghost'  >
                             Bridge
                         </Button>
                     </Link>
@@ -81,7 +84,7 @@ function Navbar() {
                         <Address {...{ selectedAddress, disconnect }} />
                         :
                         <>
-                            <Button leftIcon={<IoWalletOutline size="20px" />} colorScheme='teal' color="#171e2b" size='sm' variant='solid' marginRight="1px" onClick={openModal}>
+                            <Button leftIcon={<IoWalletOutline size="20px" />} bg="purple.400" color="white" size='sm' variant='solid' marginRight="1px" onClick={openModal}>
                                 Connect Wallet
                             </Button>
                             <ConnectWallet isOpen={isModalOpen} onOpen={() => { }} onClose={closeModal} />

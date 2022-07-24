@@ -9,16 +9,12 @@ function Home() {
 
   useEffect(() => {
 
-    setTimeout(() => {
+    router.push('/swap');
 
-      router.push('/swap')
-
-    }, 1000)
-
-  });
+  }, []);
 
   return (
-    <Flex height="100vh" width="100vw" display="flex" justifyContent="center" alignItems='center' bg="teal.400"  >
+    <Flex height="100vh" width="100vw" display="flex" justifyContent="center" alignItems='center' bg="#44337A"  >
       <Atom />
     </Flex >
   )

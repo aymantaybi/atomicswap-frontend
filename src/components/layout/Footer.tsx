@@ -5,7 +5,7 @@ import { BsDiscord, BsTwitter, BsGithub } from "react-icons/bs";
 
 function Footer() {
     return (
-        <Flex minWidth='max-content' height={["60vh", "60vh", "40vh"]} display="flex" justifyContent="center" alignItems='start' bg="teal.400" gap='2' padding={[null, null, '100px 5px 0px 5px']}  >
+        <Flex minWidth='max-content' height={["60vh", "60vh", "40vh"]} display="flex" justifyContent="center" alignItems='start' bg="purple.400" gap='2' padding={[null, null, '100px 5px 0px 5px']}  >
             <SimpleGrid width="100%" columns={[1, 1, 3]} spacing={10} >
                 <VStack spacing={4} align='center' >
                     <Box h='100%'>
