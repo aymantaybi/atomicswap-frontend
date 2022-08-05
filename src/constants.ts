@@ -1,6 +1,6 @@
 const defaults = {
-    tokenIn: "0xc99a6a985ed2cac1ef41640596c5a5f9f4e19ef5",
-    tokenOut: "0x0b7007c13325c48911f73a2dad5fa5dcbf808adc"
+    tokenIn: "0xa8754b9fa15fc18bb59458815510e40a12cd2014",
+    tokenOut: "0xc99a6a985ed2cac1ef41640596c5a5f9f4e19ef5"
 };
 
 const assetsIcons = {

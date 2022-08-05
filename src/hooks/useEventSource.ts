@@ -1,26 +1,26 @@
-import { useState, useEffect, useRef } from 'react';
-import EventSource from 'eventsource';
+import { useState, useEffect, useRef, DependencyList } from "react";
+import EventSource from "eventsource";
 
-function useEventSource(url: string, callback: (data: any) => any) {
+function useEventSource(
+  params: { url: string; callback: (data: any) => any }[]
+) {
+  const reference = useRef([]);
 
-    const eventSource = useRef(null);
-
-    if (!eventSource.current) {
-        eventSource.current = new EventSource(url);
+  params.forEach(({ url, callback }, index) => {
+    if (!reference.current[index]) {
+      reference.current[index] = new EventSource(url);
     }
-    
-    eventSource.current.onmessage = (e) => {
-        callback(JSON.parse(e.data));
+    reference.current[index].onmessage = (e) => {
+      callback(JSON.parse(e.data));
     };
+  });
 
-    useEffect(() => {
-
-        return () => {
-            console.log("Close Event Source Stream")
-            eventSource.current.close();
-        };
-
-    }, []);
-};
+  useEffect(() => {
+    return () => {
+      reference.current.forEach((eventSource) => eventSource.close());
+      console.log("Close Event Source Stream");
+    };
+  }, []);
+}
 
 export default useEventSource;

@@ -11,7 +11,7 @@ import {
     useColorModeValue,
     Heading
 } from "@chakra-ui/react"
-import { useEffect } from "react";
+import { useRouter } from 'next/router';
 
 import { ArrowDownIcon } from '@chakra-ui/icons'
 
@@ -48,7 +48,20 @@ function SwapInput(props: any) {
 
 export default function SwapInterface() {
 
+    const router = useRouter();
+
     const bgColor = useColorModeValue("white", "#171e2b");
+
+    const handleChangeToken = () => {
+
+        router.push({
+            query: {
+                tokenIn: "0xa8754b9fa15fc18bb59458815510e40a12cd2014",
+                tokenOut: "0xc99a6a985ed2cac1ef41640596c5a5f9f4e19ef5"
+            },
+        })
+
+    }
 
     return (
         <VStack spacing={4} alignSelf="center" borderWidth='1px' borderRadius='lg' padding="1.5rem" width="350px" bgColor={bgColor} >
@@ -62,7 +75,7 @@ export default function SwapInterface() {
                     <IconButton icon={<ArrowDownIcon />} aria-label="" />
                     <SwapInput token="eth" value={formatPrice("0")} type="output" />
                 </VStack>
-                <Button bg='purple.700' size='md' >
+                <Button bg='purple.700' size='md' onClick={handleChangeToken} >
                     Swap
                 </Button>
             </VStack>
