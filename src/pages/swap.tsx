@@ -42,7 +42,6 @@ interface Props {
 }
 
 function Swap() {
-
   const bgColor = useColorModeValue("white", "#171e2b");
 
   const [tokenIn, setTokenIn] = useState(defaults.tokenIn);
@@ -57,9 +56,13 @@ function Swap() {
   const [tokens, setTokens] = useState([]);
 
   const handleStreamUpdates = (data: { pair: any; timestamp: number }) => {
+
     let updateIndex = reservesUpdates.findIndex(
       (update) => update.pair.address == data.pair
     );
+
+    console.log(data);
+    console.log(updateIndex);
 
     if (!reservesUpdates[updateIndex]) return;
 
@@ -148,8 +151,12 @@ function Swap() {
           </TabPanel>
         </TabPanels>
       </Tabs>
-
-      <SwapInterface />
+      <SwapInterface
+        tokenIn={tokenIn}
+        tokenOut={tokenOut}
+        setTokenIn={setTokenIn}
+        setTokenOut={setTokenOut}
+      />
     </Layout>
   );
 }

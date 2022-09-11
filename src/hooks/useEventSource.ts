@@ -7,13 +7,24 @@ function useEventSource(
   const reference = useRef([]);
 
   params.forEach(({ url, callback }, index) => {
-    if (!reference.current[index]) {
+    if (reference.current[index]?.url != url) {
+      reference.current[index]?.close();
       reference.current[index] = new EventSource(url);
     }
     reference.current[index].onmessage = (e) => {
-      callback(JSON.parse(e.data));
+      let json = JSON.parse(e.data);
+      console.log(json);
+      callback(json);
+    };
+    reference.current[index].onopen = () => {
+      console.log('Event source open !');
+    };
+    reference.current[index].onclose = () => {
+      console.log('Event source close !');
     };
   });
+
+  console.log(reference.current);
 
   useEffect(() => {
     return () => {

@@ -284,8 +284,6 @@ export default function TradingChart({
   const assetIn = pathTokensSymbol[0];
   const assetOut = pathTokensSymbol[pathTokensSymbol.length - 1];
 
-  ///isLoaded={Boolean(stats.price)}
-
   const isLoaded = Boolean(stats.price);
 
   return (
